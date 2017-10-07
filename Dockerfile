@@ -1,10 +1,11 @@
-FROM nginx
+FROM alpine
 MAINTAINER Paulino Reyes <fusiondev@yahoo.com>
 
-EXPOSE 8000
+RUN apk add --update nodejs
 
-ADD start.sh start.sh
+# Bundle app source
+COPY . /src
 
-RUN chmod +x start.sh
+EXPOSE  8080
+CMD ["node", "/src/index.js"]
 
-CMD ./start.sh
